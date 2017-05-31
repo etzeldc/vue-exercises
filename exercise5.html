@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="coffee">
+        <input type="datetime-local" v-model="coffeeTime">
+        <p>{{realTimeCoffeeTime}}</p>
+        <p>You still have approximately {{caffeineInBody*100}}% of a cup's worth of caffeine left in your body</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#coffee',
+            data: {
+                coffeeTime: '2017-05-30T21:11',
+                now: new Date()
+            },
+            computed: {
+                realCoffeeTime: function() {
+                    return new Date(this.coffeeTime);
+                },
+                realTimeCoffeeTime: function() {
+                    return this.now - this.realCoffeeTime;
+                },
+                caffeineInBody: function() {
+                    return Math.pow(.5,((this.realTimeCoffeeTime/1000/60/60)/10));
+                }
+            },
+            methods: {},
+            created: function() {
+                var thatVm = this;
+                setInterval(function() {
+                    thatVm.now = new Date();
+                }, 777);
+            }
+        })
+    </script>
+</body>
+</html>

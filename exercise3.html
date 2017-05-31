@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <style></style>
+    <div id="colorMean">
+        <div id="colorOne" v-bind:style="{'background-color': displayColorOne}">
+            Color One
+            R: <input v-model="color1R">
+            G: <input v-model="color1G">
+            B: <input v-model="color1B">
+        </div>
+        </div id="colorTwo" v-bind:style="{'background-color': displayColorTwo}">
+            Color Two 
+            R: <input v-model="color2R">
+            G: <input v-model="color2G">
+            B: <input v-model="color2B">
+        </div>
+        <div v-bind:style="{'background-color': meanColor}">
+            Color Three
+        </div>
+    </div>
+    <script>
+        var colorMixApp = new Vue ({
+            el: 'colorMean',
+            data: {
+                color1R: '',
+                color1G: '',
+                color1B: '',
+                color2R: '',
+                color2G: '',
+                color2B: '',
+            },
+            computed: {
+                meanColor: function() {
+                    return `rgb(${parseInt(this.color1R) + parseInt(this.color2R)/2}, ${parseInt(this.color1G) + parseInt(this.color2G)/2}, ${parseInt(this.color1B) + parseInt(this.color2B)/2})`;
+                }
+            },
+            methods: {
+                displayColorOne: function() {
+                    return `rgb(${this.color1R}, ${this.color1G}, ${this.color1B})`
+                },
+                displayColorTwo: function() {
+                    return `rgb(${this.color2R}, ${this.color2G}, ${this.color2B})`
+                }
+            },
+        });
+    </script>
+</body>
+</html>

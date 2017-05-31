@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+    <div id="hover">
+        <p v-on:mouseout="unturnRed" v-on:mouseover="turnRed" v-bind:class="{red: isHovering}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel id explicabo fugiat maiores, fuga distinctio at officia accusantium aperiam praesentium, debitis earum velit esse nesciunt harum itaque recusandae quis reiciendis!</p>
+    </div>
+    <script>
+        var forgetJQ = new Vue({
+            el: '#hover',
+            data: {
+                isHovering: false
+            },
+            computed: {},
+            methods: {
+                turnRed: function() {
+                    this.isHovering = true;
+                },
+                unturnRed: function() {
+                    this.isHovering = false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
